@@ -373,7 +373,7 @@ build_prompt() {
 #  prompt_status
 #  prompt_battery
 #  prompt_time
-  prompt_condaenv
+#  prompt_condaenv
   prompt_dir
   prompt_git
   prompt_hg
