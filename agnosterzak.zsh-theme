@@ -199,7 +199,7 @@ prompt_git() {
     if [[ -n $dirty ]]; then
       clean=''
       bgclr='yellow'
-      fgclr='magenta'
+      fgclr='white'
     else
       clean=' ✔'
       bgclr='green'
@@ -359,22 +359,29 @@ prompt_status() {
   [[ -n "$symbols" ]] && prompt_segment black default "$symbols"
 }
 
+
+prompt_condaenv() {
+  if [[ $CONDA_PREFIX ]]; then
+    prompt_segment blue white "(`basename $CONDA_PREFIX`)"
+  fi
+}
+
 ## Main prompt
 build_prompt() {
   RETVAL=$?
-  echo -n "\n"
-  prompt_status
-  prompt_battery
-  prompt_time
-  prompt_virtualenv
+#  echo -n "\n"
+#  prompt_status
+#  prompt_battery
+#  prompt_time
+  prompt_condaenv
   prompt_dir
   prompt_git
   prompt_hg
   prompt_end
   CURRENT_BG='NONE'
-  echo -n "\n"
-  prompt_context
-  prompt_end
+#  echo -n "\n"
+#  prompt_context
+#  prompt_end
 }
 
 PROMPT='%{%f%b%k%}$(build_prompt) '
